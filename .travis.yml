@@ -1,0 +1,24 @@
+services:
+  - docker
+language: bash
+
+addons:
+  apt:
+    packages:
+    - docker-ce
+
+env:
+  matrix:
+  - CONTAINER=debian-unstable-ppc
+before_install:
+- docker run --rm --privileged multiarch/qemu-user-static:register --reset
+
+script:
+- docker build -t pqclean/$CONTAINER $CONTAINER
+
+after_success:
+- |
+  if [[ "$TRAVIS_PULL_REQUEST" == 'false' ]]; then
+    echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin && docker push pqclean/$CONTAINER
+  fi
+#  vim: set ft=yaml ts=4 sw=2 tw=0 et :
