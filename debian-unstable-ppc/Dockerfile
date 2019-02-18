@@ -18,5 +18,6 @@ RUN wget http://ftp.ports.debian.org/debian-ports/pool/main/d/debian-ports-archi
         gcc \
         clang \
         python3-nose \
+        python3-rednose \
 # Cleanup
  && rm -rf /var/lib/apt/lists/*

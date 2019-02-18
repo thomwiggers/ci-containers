@@ -11,5 +11,6 @@ RUN apt-get update -qq \
         gcc \
         clang \
         python3-nose \
+        python3-rednose \
 # Cleanup
  && rm -rf /var/lib/apt/lists/*
