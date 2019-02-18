@@ -19,9 +19,11 @@ before_install:
 script:
 - travis_retry docker build -t pqclean/$CONTAINER $CONTAINER
 
-after_success:
-- |
-  if [[ "$TRAVIS_PULL_REQUEST" == 'false' ]]; then
-    echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin && docker push pqclean/$CONTAINER
-  fi
+deploy:
+  provider: script
+  script:
+  - echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
+  - docker push pqclean/$CONTAINER
+  on:
+    branch: master
 #  vim: set ft=yaml ts=4 sw=2 tw=0 et :
