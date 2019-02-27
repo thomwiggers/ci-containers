@@ -1,4 +1,5 @@
-FROM multiarch/debian-debootstrap:arm64-buster
+ARG ARCH
+FROM multiarch/debian-debootstrap:${ARCH}-buster
 
 RUN apt-get update -qq \
  && apt-get upgrade -y \
