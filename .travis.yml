@@ -9,19 +9,33 @@ addons:
 
 env:
   matrix:
-  - CONTAINER=debian-unstable-ppc
-  - CONTAINER=debian-buster-arm
-  - CONTAINER=debian-buster-aarch64
+  - ARCH=armhf
+  - ARCH=arm64
+  - ARCH=i386
+  - ARCH=amd64
+
+matrix:
+  include:
+    - name: debian-unstable-ppc
+      script:
+        - docker build -t pqclean/ci-container:unstable-ppc debian-unstable-ppc
+      env:
+        TAG=debian-unstable-ppc
+      deploy:
+        provider: script
+        script: bash deploy.sh debian-unstable-ppc
+        on:
+          branch: master
 
 before_install:
 - docker run --rm --privileged multiarch/qemu-user-static:register --reset
 
 script:
-- travis_retry docker build -t pqclean/$CONTAINER $CONTAINER
+- travis_retry docker build -t pqclean/ci-container:$ARCH --build-arg ARCH debian-buster
 
 deploy:
   provider: script
-  script: bash deploy.sh $CONTAINER
+  script: bash deploy.sh $ARCH
   on:
     branch: master
 #  vim: set ft=yaml ts=4 sw=2 tw=0 et :
