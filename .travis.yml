@@ -20,12 +20,7 @@ matrix:
       script:
         - docker build -t pqclean/ci-container:unstable-ppc debian-unstable-ppc
       env:
-        TAG=debian-unstable-ppc
-      deploy:
-        provider: script
-        script: bash deploy.sh debian-unstable-ppc
-        on:
-          branch: master
+        - ARCH=unstable-ppc
 
 before_install:
 - docker run --rm --privileged multiarch/qemu-user-static:register --reset
