@@ -1,6 +1,6 @@
 services:
   - docker
-language: bash
+language: minimal
 
 addons:
   apt:
