@@ -12,6 +12,7 @@ RUN wget http://ftp.ports.debian.org/debian-ports/pool/main/d/debian-ports-archi
  && apt-get dist-upgrade -y \
 # Install build dependencies
  && apt-get install -y \
+        astyle \
         python3-minimal \
         python3-yaml \
         make \

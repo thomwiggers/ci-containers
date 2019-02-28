@@ -6,6 +6,7 @@ RUN apt-get update -qq \
  && apt-get dist-upgrade -y \
 # Install build dependencies
  && apt-get install -y \
+        astyle \
         python3-minimal \
         python3-yaml \
         make \
