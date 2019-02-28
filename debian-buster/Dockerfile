@@ -14,5 +14,6 @@ RUN apt-get update -qq \
         clang \
         python3-nose \
         python3-rednose \
+        valgrind \
 # Cleanup
  && rm -rf /var/lib/apt/lists/*
