@@ -7,13 +7,14 @@ RUN apt-get update -qq \
 # Install build dependencies
  && apt-get install -y \
         astyle \
-        python3-minimal \
-        python3-yaml \
-        make \
-        gcc \
         clang \
+        clang-tidy \
+        gcc \
+        make \
+        python3-minimal \
         python3-nose \
         python3-rednose \
+        python3-yaml \
         valgrind \
 # Cleanup
  && rm -rf /var/lib/apt/lists/*

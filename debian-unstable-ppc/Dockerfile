@@ -13,12 +13,13 @@ RUN wget http://ftp.ports.debian.org/debian-ports/pool/main/d/debian-ports-archi
 # Install build dependencies
  && apt-get install -y \
         astyle \
-        python3-minimal \
-        python3-yaml \
-        make \
-        gcc \
         clang \
+        clang-tidy \
+        gcc \
+        make \
+        python3-minimal \
         python3-nose \
         python3-rednose \
+        python3-yaml \
 # Cleanup
  && rm -rf /var/lib/apt/lists/*
