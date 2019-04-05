@@ -22,7 +22,3 @@ stages:
     steps:
     - script: docker run --rm --privileged multiarch/qemu-user-static:register --reset
       displayName: Register QEMU wrappers
-    - checkout: self
-    - script: |
-        docker build -t "pqclean/ci-container:$(arch)" --build-arg "ARCH=$(arch)" debian-buster
-      displayName: Build container
