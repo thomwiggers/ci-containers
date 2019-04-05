@@ -22,7 +22,7 @@ stages:
       script: docker run --rm --privileged multiarch/qemu-user-static:register --reset
     - displayName: Build container
       script: |
-        docker build -t "pqclean/ci-container:${{ parameters.arch }}" --build-arg "ARCH=${{ parameters.arch }}" debian-buster
+        docker build -t "pqclean/ci-container:$(ARCH)" --build-arg "ARCH=$(ARCH)" debian-buster
 
 ##test:
 ##  #  - script: |
