@@ -28,3 +28,8 @@ stages:
     - script: |
         docker build -t "pqclean/ci-container:$(arch)" --build-arg "ARCH=$(arch)" debian-buster
       displayName: Build container
+    - script: |
+        docker login --user $(dockerUsername) --password $(dockerPassword)
+        docker push "pqclean/ci-container:$(arch)"
+      condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+      displayName: "Push to Docker hub"
