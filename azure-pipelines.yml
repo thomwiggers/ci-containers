@@ -6,7 +6,8 @@ stages:
 - stage: Build
 
   jobs:
-  - job: "Build containers for $(ARCH)"
+  - job: build_container
+    displayName: Build container for architectures
     pool:
       vmImage: "ubuntu-16.04"
     strategy:
@@ -22,3 +23,8 @@ stages:
     steps:
     - script: docker run --rm --privileged multiarch/qemu-user-static:register --reset
       displayName: Register QEMU wrappers
+    - checkout: self
+      fetchDepth: 1
+    - script: |
+        docker build -t "pqclean/ci-container:$(arch)" --build-arg "ARCH=$(arch)" debian-buster
+      displayName: Build container
