@@ -6,8 +6,8 @@ stages:
 - stage: Build
 
   jobs:
-  - job: build_container
-    displayName: Build container for architectures
+  - job: build_container_emulated
+    displayName: Build container for emulated $(arch)
     pool:
       vmImage: "ubuntu-16.04"
     strategy:
@@ -31,5 +31,22 @@ stages:
     - script: |
         docker login --user $(dockerUsername) --password $(dockerPassword)
         docker push "pqclean/ci-container:$(arch)"
+      condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+      displayName: "Push to Docker hub"
+  - job: build_container_powerpc
+    displayName: Build container for PowerPC
+    pool:
+      vmImage: "ubuntu-16.04"
+    steps:
+    - script: docker run --rm --privileged multiarch/qemu-user-static:register --reset
+      displayName: Register QEMU wrappers
+    - checkout: self
+      fetchDepth: 1
+    - script: |
+        docker build -t "pqclean/ci-container:unstable-ppc" debian-unstable-powerpc
+      displayName: Build container
+    - script: |
+        docker login --user $(dockerUsername) --password $(dockerPassword)
+        docker push "pqclean/ci-container:unstable-ppc"
       condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
       displayName: "Push to Docker hub"
