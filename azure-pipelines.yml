@@ -7,7 +7,7 @@ stages:
 
   jobs:
   - job: build_container_emulated
-    displayName: Build container for emulated $(arch)
+    displayName: Build container for architecture
     pool:
       vmImage: "ubuntu-16.04"
     strategy:
