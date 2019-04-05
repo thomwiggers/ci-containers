@@ -18,10 +18,10 @@ stages:
         amd64:
           arch: amd64
     steps:
-    - displayName: Register QEMU wrappers
-      script: docker run --rm --privileged multiarch/qemu-user-static:register --reset
+    - script: docker run --rm --privileged multiarch/qemu-user-static:register --reset
+      displayName: Register QEMU wrappers
     - checkout: self
       fetchDepth: 1
-    - displayName: Build container
-      script: |
+    - script: |
         docker build -t "pqclean/ci-container:$(arch)" --build-arg "ARCH=$(arch)" debian-buster
+      displayName: Build container
