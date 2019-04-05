@@ -11,8 +11,10 @@ RUN apt-get update -qq \
         clang-tidy \
         gcc \
         make \
+        python3-dev \
         python3-minimal \
         python3-nose \
+        python3-pip \
         python3-rednose \
         python3-yaml \
         valgrind \

@@ -17,8 +17,10 @@ RUN wget http://ftp.ports.debian.org/debian-ports/pool/main/d/debian-ports-archi
         clang-tidy \
         gcc \
         make \
+        python3-dev \
         python3-minimal \
         python3-nose \
+        python3-pip \
         python3-rednose \
         python3-yaml \
 # Cleanup
