@@ -1,4 +1,6 @@
 ---
+name: $(Date:yyyyMMdd).$(Rev:.r)
+
 
 stages:
 - stage: Build
