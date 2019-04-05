@@ -16,6 +16,7 @@ RUN wget http://ftp.ports.debian.org/debian-ports/pool/main/d/debian-ports-archi
         clang \
         clang-tidy \
         gcc \
+        git-core \
         make \
         python3-dev \
         python3-minimal \
