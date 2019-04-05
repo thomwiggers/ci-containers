@@ -16,6 +16,7 @@ RUN apt-get update -qq \
         python3-minimal \
         python3-nose \
         python3-pip \
+        python3-pycparser \
         python3-rednose \
         python3-yaml \
         valgrind \

@@ -22,6 +22,7 @@ RUN wget http://ftp.ports.debian.org/debian-ports/pool/main/d/debian-ports-archi
         python3-minimal \
         python3-nose \
         python3-pip \
+        python3-pycparser \
         python3-rednose \
         python3-yaml \
 # Cleanup
