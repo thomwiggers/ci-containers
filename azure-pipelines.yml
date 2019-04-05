@@ -10,13 +10,13 @@ stages:
     strategy:
       matrix:
         armhf:
-          ARCH=armhf
+          arch: armhf
         arm64:
-          ARCH=arm64
+          arch: arm64
         i386:
-          ARCH=i386
+          arch: i386
         amd64:
-          ARCH=amd64
+          arch: amd64
     steps:
     - displayName: Register QEMU wrappers
       script: docker run --rm --privileged multiarch/qemu-user-static:register --reset
@@ -24,4 +24,4 @@ stages:
       fetchDepth: 1
     - displayName: Build container
       script: |
-        docker build -t "pqclean/ci-container:$(ARCH)" --build-arg "ARCH=$(ARCH)" debian-buster
+        docker build -t "pqclean/ci-container:$(arch)" --build-arg "ARCH=$(arch)" debian-buster
