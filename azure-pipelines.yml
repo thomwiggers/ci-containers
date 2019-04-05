@@ -29,7 +29,7 @@ stages:
         docker build -t "pqclean/ci-container:$(arch)" --build-arg "ARCH=$(arch)" debian-buster
       displayName: Build container
     - script: |
-        docker login --user $(dockerUsername) --password $(dockerPassword)
+        docker login --username $(dockerUsername) --password $(dockerPassword)
         docker push "pqclean/ci-container:$(arch)"
       condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
       displayName: "Push to Docker hub"
@@ -46,7 +46,7 @@ stages:
         docker build -t "pqclean/ci-container:unstable-ppc" debian-unstable-powerpc
       displayName: Build container
     - script: |
-        docker login --user $(dockerUsername) --password $(dockerPassword)
+        docker login --username $(dockerUsername) --password $(dockerPassword)
         docker push "pqclean/ci-container:unstable-ppc"
       condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
       displayName: "Push to Docker hub"
