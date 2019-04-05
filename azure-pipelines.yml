@@ -43,7 +43,7 @@ stages:
     - checkout: self
       fetchDepth: 1
     - script: |
-        docker build -t "pqclean/ci-container:unstable-ppc" debian-unstable-powerpc
+        docker build -t "pqclean/ci-container:unstable-ppc" debian-unstable-ppc
       displayName: Build container
     - script: |
         docker login --username $(dockerUsername) --password $(dockerPassword)
