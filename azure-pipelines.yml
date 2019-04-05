@@ -1,6 +1,6 @@
 ---
 pool:
-  vmImage: 'ubuntu-16.04'
+  vmImage: "ubuntu-16.04"
 
 stages:
 - stage: Build
@@ -23,8 +23,3 @@ stages:
     - displayName: Build container
       script: |
         docker build -t "pqclean/ci-container:$(ARCH)" --build-arg "ARCH=$(ARCH)" debian-buster
-
-##test:
-##  #  - script: |
-##  #      docker login --username $(dockerUser) -p $(dockerPassword)
-##  #      docker push "pqclean/ci-container:${{ paramters.arch }}"
