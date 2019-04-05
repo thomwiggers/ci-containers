@@ -1,0 +1,19 @@
+jobs:
+- job: "Build containers for $(ARCH)"
+  strategy:
+    matrix:
+      armhf:
+        ARCH=armhf
+      arm64:
+        ARCH=arm64
+      i386:
+        ARCH=i386
+      amd64:
+        ARCH=amd64
+  steps:
+  - script: docker run --rm --privileged multiarch/qemu-user-static:register --reset
+  - script: |
+      docker build -t "pqclean/ci-container:${{ parameters.arch }}" --build-arg "ARCH=${{ parameters.arch }}" debian-buster
+      #  - script: |
+      #      docker login --username $(dockerUser) -p $(dockerPassword)
+      #      docker push "pqclean/ci-container:${{ paramters.arch }}"
